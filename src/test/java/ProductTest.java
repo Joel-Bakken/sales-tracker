@@ -21,61 +21,51 @@ public class ProductTest {
     Product testProduct = new Product("Bubbles", 1);
     assertEquals("Bubbles", testProduct.getName());
   }
-  // 
+
   // @Test
-  // public void Product_instantiatesWithPersonId_int() {
+  // public void Product_instantiatesWithCustomerId_int() {
   //   Product testProduct = new Product("Bubbles", 1);
-  //   assertEquals(1, testProduct.getPersonId());
+  //   assertEquals(1, testProduct.getCustomerId());
   // }
-  //
-  // @Test
-  // public void equals_returnsTrueIfNameAndPersonIdAreSame_true() {
-  //   Product testProduct = new Product("Bubbles", 1);
-  //   Product anotherProduct = new Product("Bubbles", 1);
-  //   assertTrue(testProduct.equals(anotherProduct));
-  // }
-  //
-  // @Test
-  // public void save_successfullyAddsProductToDatabase_List() {
-  //   Product testProduct = new Product("Bubbles", 1);
-  //   testProduct.save();
-  //   assertTrue(Product.all().get(0).equals(testProduct));
-  // }
-  //
-  // @Test
-  // public void save_assignsIdToProduct() {
-  //   Product testProduct = new Product("Bubbles", 1);
-  //   testProduct.save();
-  //   Product savedProduct = Product.all().get(0);
-  //   assertEquals(savedProduct.getId(), testProduct.getId());
-  // }
-  //
-  // @Test
-  // public void all_returnsAllInstancesOfProduct_true() {
-  //   Product firstProduct = new Product("Bubbles", 1);
-  //   firstProduct.save();
-  //   Product secondProduct = new Product("Spud", 3);
-  //   secondProduct.save();
-  //   assertEquals(true, Product.all().get(0).equals(firstProduct));
-  //   assertEquals(true, Product.all().get(1).equals(secondProduct));
-  // }
-  //
-  // @Test
-  // public void find_returnsProductWithSameId_secondProduct() {
-  //   Product firstProduct = new Product("Bubbles", 1);
-  //   firstProduct.save();
-  //   Product secondProduct = new Product("Spud", 3);
-  //   secondProduct.save();
-  //   assertEquals(Product.find(secondProduct.getId()), secondProduct);
-  // }
-  //
-  // @Test
-  // public void save_savesPersonIdIntoDB_true() {
-  //   Person testPerson = new Person("Henry", "henry@henry.com");
-  //   testPerson.save();
-  //   Product testProduct = new Product("Bubbles", testPerson.getId());
-  //   testProduct.save();
-  //   Product savedProduct = Product.find(testProduct.getId());
-  //   assertEquals(savedProduct.getPersonId(), testPerson.getId());
-  // }
+
+  @Test
+  public void equals_returnsTrueIfNameAndCustomerIdAreSame_true() {
+    Product testProduct = new Product("Bubbles", 1);
+    Product anotherProduct = new Product("Bubbles", 1);
+    assertTrue(testProduct.equals(anotherProduct));
+  }
+
+  @Test
+  public void save_successfullyAddsProductToDatabase_List() {
+    Product testProduct = new Product("Bubbles", 1);
+    testProduct.save();
+    assertTrue(Product.all().get(0).equals(testProduct));
+  }
+
+  @Test
+  public void save_assignsIdToProduct() {
+    Product testProduct = new Product("Bubbles", 1);
+    testProduct.save();
+    Product savedProduct = Product.all().get(0);
+    assertEquals(savedProduct.getId(), testProduct.getId());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfProduct_true() {
+    Product firstProduct = new Product("Bubbles", 1);
+    firstProduct.save();
+    Product secondProduct = new Product("Spud", 3);
+    secondProduct.save();
+    assertEquals(true, Product.all().get(0).equals(firstProduct));
+    assertEquals(true, Product.all().get(1).equals(secondProduct));
+  }
+
+  @Test
+  public void find_returnsProductWithSameId_secondProduct() {
+    Product firstProduct = new Product("Bubbles", 1);
+    firstProduct.save();
+    Product secondProduct = new Product("Spud", 3);
+    secondProduct.save();
+    assertEquals(Product.find(secondProduct.getId()), secondProduct);
+  }
 }

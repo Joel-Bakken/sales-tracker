@@ -5,6 +5,7 @@ import org.sql2o.*;
 public class Product {
   private String name;
   private int cost;
+  private int customerId;
   private int id;
 
   public Product(String name, int cost) {
@@ -24,6 +25,11 @@ public class Product {
     return id;
   }
 
+  public int getCustomerId(){
+    return customerId;
+  }
+
+
   @Override
   public boolean equals(Object otherProduct){
     if (!(otherProduct instanceof Product)) {
@@ -31,7 +37,7 @@ public class Product {
     } else {
       Product newProduct = (Product) otherProduct;
       return this.getName().equals(newProduct.getName()) &&
-             this.getCost().equals(newProduct.getCost());
+             this.getCost()==(newProduct.getCost());
     }
   }
 
@@ -94,6 +100,17 @@ public class Product {
         .addParameter("customerId", customer.getId())
         .addParameter("productId", this.getId())
         .executeUpdate();
+    }
+  }
+
+  public static Product find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM products where id=:id";
+      Product product = con.createQuery(sql)
+        .addParameter("id", id)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(Product.class);
+    return product;
     }
   }
 
