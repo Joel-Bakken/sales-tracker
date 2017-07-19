@@ -1,0 +1,15 @@
+<!--products.vtl-->
+<h1>product list!</h1>
+
+#if ($products)
+  <ul>
+    #foreach ($product in $products)
+      <li><a href="/products/$product.getId()">$product.getName() -- $$product.getCost()</a></li>
+    #end
+  </ul>
+#else
+  <p>No products!</p>
+#end
+
+<a href="/">Add New product</a>
+<!--products.vtl-->

@@ -1,0 +1,8 @@
+<!--customers.vtl-->
+<h1>All customers</h1>
+<ul>
+  #foreach ($customer in $customers)
+    <li><a href="/customers/$customer.getId()">$customer.getName()</a></li>
+  #end
+</ul>
+<!--customers.vtl-->

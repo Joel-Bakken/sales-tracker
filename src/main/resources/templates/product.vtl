@@ -1,0 +1,21 @@
+<!--product.vtl-->
+<h1>$product.getName()</h1>
+<h2> Belongs to: $customer.getName()'s  product list.</h2>
+
+<h2>Edit product:</h2>
+
+<form action="/customers/$product.getCustomerId()/products/$product.getId()" method="post">
+  <label for="name">product name</label>
+  <input id="name" name="name" type="text">
+  <label for="cost">Cost</label>
+  <input id="cost" name="cost" type="text">
+
+  <button type="submit" class="btn btn-info">Update Product</button>
+</form>
+
+<form action="/customers/$product.getCustomerId()/products/$product.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-product">Delete Product</button>
+</form>
+
+<a href="/customers/$customer.getId()">Return to $customer.getName()</a>
+<!--product.vtl-->

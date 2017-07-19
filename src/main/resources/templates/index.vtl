@@ -1,0 +1,47 @@
+<!--index.vtl-->
+<h1>Sales Tracker Control Panel</h1>
+
+<h2> All Customers: </h2>
+
+#if($customers)
+  <p>Click on a customer to see its products:</p>
+  <ul>
+    #foreach ($customer in $customers)
+      <li><a href="/customers/$customer.getId()">$customer.getName()</a><form action="/customers/$customer.getId()/delete" method="post">
+        <button type="submit" class="btn btn-danger" id="delete-customer">Delete Customer</button>
+      </form></li>
+    #end
+  </ul>
+#else
+  <p>There are no customers yet! Find some!</p>
+#end
+
+<h2>New Customer:</h2>
+
+<form action="/customers" method="post">
+  <label for="name">Customer name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit" class="btn btn-success">Add Customer</button>
+</form>
+
+<h2>New product:</h2>
+
+<form action="/products" method="post">
+  <label for="customerId">Select a Customer</label>
+<select id='customerId' name='customerId' type='text'>
+  #foreach($customer in $customers)
+    <option value="$customer.getId()">$customer.getName()</option>
+  #end
+</select>
+
+  <div class="form-group">
+    <label for="name">name</label>
+    <input id="name" name="name" type="text" class="form-control">
+
+    <label for="cost">cost</label>
+    <input id="cost" name="cost" type="text" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add product</button>
+</form>
+<!--index.vtl-->

@@ -1,0 +1,17 @@
+<!--customer-products-form.vtl-->
+<h1>Add a product to $customer.getName()</h1>
+
+<form action="/products" method="post">
+  <input id="customerId" name="customerId" type="hidden" value="$customer.getId()">
+
+  <div class="form-group">
+    <label for="name">name</label>
+    <input id="name" name="name" type="text" class="form-control">
+    <label for="cost">Cost</label>
+    <input id="cost" name="cost" type="text" class="form-control">
+
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Product</button>
+</form>
+<!--customer-products-form.vtl-->

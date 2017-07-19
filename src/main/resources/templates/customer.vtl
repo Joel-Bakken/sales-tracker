@@ -1,0 +1,20 @@
+<!--product.vtl-->
+<h1>$customer.getName()'s product list:</h1>
+
+#if($products)
+  <ul>
+    #foreach ($product in $products)
+      <li><a href="/products/$product.getId()">$product.getName()</a><form action="/products/$product.getId()/delete" method="post">
+        <button type="submit" class="btn btn-danger" id="delete-product">Delete Product</button>
+      </form></li>
+    #end
+  </ul>
+#else
+  <p>There are no products yet! Buy some!</p>
+#end
+
+<form action="/products/$product.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger" id="delete-product">Delete Product</button>
+</form>
+
+<!--product.vtl-->

@@ -8,9 +8,10 @@ public class Product {
   private int customerId;
   private int id;
 
-  public Product(String name, int cost) {
+  public Product(String name, int cost, int customerId) {
     this.name = name;
     this.cost = cost;
+    this.customerId = customerId;
   }
 
   public String getName() {
@@ -43,10 +44,11 @@ public class Product {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO products (name, cost) VALUES (:name, :cost)";
+      String sql = "INSERT INTO products (name, cost, customerId) VALUES (:name, :cost, :customerId)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("cost", this.cost)
+        .addParameter("customerId", this.customerId)
         .executeUpdate()
         .getKey();
     }
@@ -111,6 +113,27 @@ public class Product {
         .throwOnMappingFailure(false)
         .executeAndFetchFirst(Product.class);
     return product;
+    }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "DELETE FROM products WHERE id = :id;";
+    con.createQuery(sql)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void update(int cost) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE products SET cost = :name, :cost, customerId WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("name", this.name)
+        .addParameter("cost", this.cost)
+        .addParameter("customerId", this.customerId)
+        .addParameter("id", this.id)
+        .executeUpdate();
     }
   }
 
