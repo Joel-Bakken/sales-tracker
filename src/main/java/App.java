@@ -84,6 +84,7 @@ public class App {
     get("/customers/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Customer customer = Customer.find(Integer.parseInt(request.params(":id")));
+      model.put("products", Product.all());
       model.put("customer", customer);
       model.put("template", "templates/customer.vtl");
       return new ModelAndView(model, layout);

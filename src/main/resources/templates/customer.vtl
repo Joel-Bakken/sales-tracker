@@ -3,18 +3,14 @@
 
 #if($products)
   <ul>
-    #foreach ($product in $products)
-      <li><a href="/products/$product.getId()">$product.getName()</a><form action="/products/$product.getId()/delete" method="post">
-        <button type="submit" class="btn btn-danger" id="delete-product">Delete Product</button>
-      </form></li>
+    #foreach ($product in $customer.getProducts($customer.getId()))
+      <li>
+        <a href="/customers/$customer.getId()/products/$product.getId()">$product.getName()</a>
+      </li>
     #end
   </ul>
 #else
   <p>There are no products yet! Buy some!</p>
 #end
-
-<form action="/products/$product.getId()/delete" method="post">
-  <button type="submit" class="btn btn-danger" id="delete-product">Delete Product</button>
-</form>
 
 <!--product.vtl-->

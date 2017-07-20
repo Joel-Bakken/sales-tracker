@@ -1,6 +1,7 @@
 import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 public class Customer {
   private String name;
@@ -13,8 +14,6 @@ public class Customer {
   public String getName() {
     return name;
   }
-
-
 
   public int getId() {
     return id;
@@ -63,6 +62,15 @@ public class Customer {
     con.createQuery(sql)
       .addParameter("id", id)
       .executeUpdate();
+    }
+  }
+
+  public List<Product> getProducts(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM products WHERE customerId = :id";
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetch(Product.class);
     }
   }
 

@@ -58,15 +58,15 @@ public class CustomerTest {
     assertEquals(true, Customer.all().get(1).equals(secondCustomer));
   }
 
-  // @Test
-  // public void getProducts_retrievesAllProductsFromDatabase_productsList() {
-  //   Customer testCustomer = new Customer("Henry", "henry@henry.com");
-  //   testCustomer.save();
-  //   Product firstProduct = new Product("smoke detector", testCustomer.getId());
-  //   firstProduct.save();
-  //   Product secondProduct = new Product("smoke creator", testCustomer.getId());
-  //   secondProduct.save();
-  //   Object[] products = new Object[] { firstProduct, secondProduct };
-  //   assertTrue(testCustomer.getProducts().containsAll(Arrays.asList(products)));
-  // }
+  @Test
+  public void getProducts_retrievesAllProductsFromDatabase_productsList() {
+    Customer testCustomer = new Customer("Henry", "henry@henry.com");
+    testCustomer.save();
+    Product firstProduct = new Product("smoke detector", testCustomer.getId());
+    firstProduct.save();
+    Product secondProduct = new Product("smoke creator", testCustomer.getId());
+    secondProduct.save();
+    Object[] products = new Object[] { firstProduct, secondProduct };
+    assertTrue(testCustomer.getProducts().containsAll(Arrays.asList(products)));
+  }
 }
