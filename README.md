@@ -66,7 +66,7 @@ sales-tracker/
 * _Clone this repository:_
 ```
 $ cd ~/Desktop
-$ git clone https://github.com/Epicodus-MT/sales-tracker.git
+$ git clone https://github.com/Littlejoel29/sales-tracker.git
 $ cd sales-tracker
 ```
 * _Run Postgres with terminal command:_
