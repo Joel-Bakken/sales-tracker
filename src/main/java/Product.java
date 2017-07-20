@@ -125,14 +125,13 @@ public class Product {
     }
   }
 
-  public void update(int cost) {
+  public void update(String name, int cost) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE products SET cost = :name, :cost, customerId WHERE id = :id";
+      String sql = "UPDATE products SET name = :name, cost = :cost WHERE id = :id";
       con.createQuery(sql)
-        .addParameter("name", this.name)
-        .addParameter("cost", this.cost)
-        .addParameter("customerId", this.customerId)
-        .addParameter("id", this.id)
+        .addParameter("name", name)
+        .addParameter("cost", cost)
+        .addParameter("id", id)
         .executeUpdate();
     }
   }

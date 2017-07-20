@@ -102,11 +102,12 @@ public class App {
     post("/customers/:customer_id/products/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Product product = Product.find(Integer.parseInt(request.params("id")));
+      String name = request.queryParams("name");
       int cost = Integer.parseInt(request.queryParams("cost"));
       Customer customer = Customer.find(product.getCustomerId());
-      product.update(cost);
+      product.update(name, cost);
       String url = String.format("/customers/%d/products/%d", customer.getId(), product.getId());
-      response.redirect(url);
+      response.redirect("/");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
