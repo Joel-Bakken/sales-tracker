@@ -117,7 +117,7 @@ public class App {
       Customer customer = Customer.find(product.getCustomerId());
       product.delete();
       model.put("customer", customer);
-      model.put("template", "templates/customer.vtl");
+      model.put("template", "templates/delete-success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
